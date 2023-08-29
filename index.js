@@ -148,15 +148,18 @@ orderedDates.forEach(date => console.log(humanizeDate(date)))
 console.log('--------- Problem 3 --------')
 
 // Given an array of dates find the date that will happen next.
-// You need to find the date that is closetest to today
+// You need to find the date that is closest to today
 // but not before!
 
 function nextDate(dates) {
   // find the date that will happen next in dates
   // return the next date
+  const orderedDates = orderDates(dates)
+  const closestDate = orderedDates.find(date => date > today)
+  return closestDate
 }
 
-nextDate([today, dueDate, startDate, bday, newYear])
+console.log(humanizeDate(nextDate([today, dueDate, startDate, bday, newYear])))
 
 // Stretch Goal: Return a human readable string:
 // Your next appointment is 3 days from now.
