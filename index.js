@@ -1,3 +1,7 @@
+function humanizeDate(date) {
+  return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+}
+
 // What is a date?
 
 // Make a Date
@@ -91,7 +95,7 @@ function consecutiveDates(date, repeat, offset) {
 // 3 days apart
 const dates = consecutiveDates(new Date(2019, 0, 1), 4, 3)
 
-dates.forEach(date => console.log(`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`))
+dates.forEach(date => console.log(humanizeDate(date)))
 
 // Should return an array with dates:
 // 1. 1/1/2019 <- Starting date
@@ -124,9 +128,12 @@ console.log('--------- Problem 2 --------')
 function orderDates(dates) {
   // orders the dates
   // returns a new array of ordered dates
+  return dates.sort((a, b) => a - b)
 }
 
-orderDates([today, dueDate, startDate, bday, newYear])
+const orderedDates = orderDates([today, dueDate, startDate, bday, newYear])
+
+orderedDates.forEach(date => console.log(humanizeDate(date)))
 
 // [bday, startdate, duedate, newyear]
 
