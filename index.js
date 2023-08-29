@@ -3,32 +3,32 @@
 // Make a Date
 const today = new Date() // Gets the time now
 // Print the date
-console.log(today, '<- Today')
+// console.log(today, '<- Today')
 // It's really a number
-console.log(today.getTime(), '<- Time')
+// console.log(today.getTime(), '<- Time')
 
 // It's really the number of milliseconds since 1970
 // get the number of years since 1970
-console.log('Years since 1970')
-console.log(today / 1000 / 60 / 60 / 24 / 365.25)
+// console.log('Years since 1970')
+// console.log(today / 1000 / 60 / 60 / 24 / 365.25)
 // Divide by 1000 to get seconds divide by 60 to get minutes
 // divide by 60 to get hours, divide by 24 to get days,
 // divide by 365.25 to get years
 
 // or divide by 86,400 seconds
-console.log(today / 86400 / 1000 / 365.25)
+// console.log(today / 86400 / 1000 / 365.25)
 
-console.log('-------- Age --------')
+// console.log('-------- Age --------')
 
 // You can make a date from almost any
 // human readable string for example:
 const bday = new Date('Sept 26, 1965')
 // Challenge: Calculate your age with JS
 const age = today - bday
-console.log(age, '<- Age in ms')
+// console.log(age, '<- Age in ms')
 // Challenge: Calculate your age in secs, mins, hrs, days, years
 
-console.log('-------- BDay --------')
+// console.log('-------- BDay --------')
 
 // You can also initialize a date with
 // year, month, date, hours, mins, secs, ms
@@ -36,18 +36,18 @@ console.log('-------- BDay --------')
 
 const newYear = new Date(2021, 0, 1)
 // Get the components from a date
-console.log(newYear.getFullYear(), newYear.getMonth(), newYear.getDate())
+// console.log(newYear.getFullYear(), newYear.getMonth(), newYear.getDate())
 // To get the month by name you might:
 const months = ['Jan','Feb','Mar','Apr','May','Jun', 'Jul','Aug','Sep','Oct','Nov','Dec']
 // Shows the month for new years
-console.log(months[newYear.getMonth()])
+// console.log(months[newYear.getMonth()])
 // Challenge: Show the month of your birthday
 
 // Days of the week are also 0 indexed 0:Sun - 6:Sat
 const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat']
 // Challenge: Show the day of the week of your birthday
 
-console.log('-------- Data Offsets --------')
+// console.log('-------- Data Offsets --------')
 
 // Date offsets show the difference between two dates
 
@@ -63,8 +63,8 @@ startDate.setDate( date.getDate() - 7 ) // 7/20
 // Use setDate to modify the end date add 3 days
 dueDate.setDate( date.getDate() + 3 ) // 7/30
 
-console.log(startDate.getDate(), dueDate.getDate())
-console.log(startDate, dueDate)
+// console.log(startDate.getDate(), dueDate.getDate())
+// console.log(startDate, dueDate)
 // Check these dates they should be 7 days ago and 3 days from now
 
 // Try these problems
@@ -77,12 +77,21 @@ console.log('--------- Problem 1 --------')
 // offset is the number days between each of the dates returned
 
 function consecutiveDates(date, repeat, offset) {
-  // Your code here
+  const dates = []
+  dates.push(date)
+  for (let i = 0; i < repeat - 1; i++) {
+    const nextDate = new Date(dates[i])
+    nextDate.setDate(nextDate.getDate() + offset)
+    dates.push(nextDate)
+  }
+  return dates
 }
 
 // Starting date 1/1/2019, repeat 4 times, return dates
 // 3 days apart
-consecutiveDates(new Date(2019, 0, 1), 4, 3)
+const dates = consecutiveDates(new Date(2019, 0, 1), 4, 3)
+
+dates.forEach(date => console.log(`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`))
 
 // Should return an array with dates:
 // 1. 1/1/2019 <- Starting date
